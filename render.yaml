@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: multilingual-xray-demo
+    runtime: python
+    plan: free
+    rootDir: AOML Deploy/backend
+    buildCommand: pip install -r requirements.lock.txt && python provision_model.py
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1 --proxy-headers --forwarded-allow-ips '*'
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: CORS_ORIGINS
+        sync: false
+      - key: MODEL_PATH
+        value: models/pneumonia_model.onnx
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OMP_NUM_THREADS
+        value: '1'

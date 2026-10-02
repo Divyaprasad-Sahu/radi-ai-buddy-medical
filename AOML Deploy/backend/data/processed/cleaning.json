@@ -1,0 +1,24 @@
+{
+  "source": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+  "seed": 42,
+  "metadata_rows": 112120,
+  "images_found": 112120,
+  "clean_rows": 61792,
+  "clean_patients": 25052,
+  "scope": "complete",
+  "split_counts": {
+    "test:0": 9861,
+    "test:1": 555,
+    "train:0": 40368,
+    "train:1": 701,
+    "val:0": 10132,
+    "val:1": 175
+  },
+  "excluded": {
+    "missing_image": 0,
+    "duplicate_metadata": 0,
+    "note": "fast mode skips image decoding, checksums, and near-duplicate scan"
+  },
+  "review_flags": 0,
+  "validation_note": "Kaggle mirrors the NIH release; image integrity and near duplicates were not exhaustively verified."
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "language": "en",
+    "status": 200,
+    "response": {
+      "chat_response": "This synthetic screening indicates the model detected an “Uncertain” pattern on a chest X‑ray with a modest confidence score of 0.62, which is below the 0.8 threshold needed to make a reliable call between pneumonia and no abnormality. Because the data are purely test‑generated and the model is uncalibrated, the result should be viewed only as an educational example, not a medical diagnosis."
+    }
+  },
+  {
+    "language": "hi",
+    "status": 200,
+    "response": {
+      "chat_response": "यह एक कृत्रिम (synthetic) छाती X‑रे स्क्रीनिंग है जिसमें मॉडल ने “Uncertain” (अनिश्चित) लेबल दिया है और स्कोर 0.62 पर है, जो निर्धारित सीमा 0.8 से नीचे है, इसलिए परिणाम को निश्चित नहीं माना जा सकता। यह केवल शैक्षिक जानकारी है, वास्तविक स्वास्थ्य सलाह या निदान नहीं है।"
+    }
+  },
+  {
+    "language": "mr",
+    "status": 200,
+    "response": {
+      "chat_response": "ही स्क्रीनिंग फक्त कृत्रिम चाचणी आहे, ज्यात मॉडेलने “Uncertain” (अनिश्चित) असे वर्गीकरण दिले आहे आणि त्याचा स्कोर 0.62 आहे, जो मॉडेलच्या ठराविक विश्वास मर्यादेपेक्षा (0.8) कमी आहे, त्यामुळे परिणामावर निश्चित निष्कर्ष काढणे सुरक्षित नाही. हा माहिती फक्त शैक्षणिक उद्देशाने आहे आणि वैद्यकीय सल्ला म्हणून वापरू नये."
+    }
+  }
+]

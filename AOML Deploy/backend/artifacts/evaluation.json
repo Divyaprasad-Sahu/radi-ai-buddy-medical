@@ -1,0 +1,109 @@
+{
+  "seed": 42,
+  "device": "cuda",
+  "batch_size": 128,
+  "gpus": 2,
+  "manifest_sha256": "15aada8cb8ca7893cffa4007e12e8bb4da591a7c85a3174ea4c143922348fd39",
+  "baseline_provenance": "Unknown; legacy checkpoint retained for comparison only",
+  "baseline_validation": {
+    "sensitivity": 0.5885714285714285,
+    "specificity": 0.6713383339913146,
+    "precision": 0.030002912904165454,
+    "f1": 0.05709534368070954,
+    "balanced_accuracy": 0.6299548812813716,
+    "roc_auc": 0.6701173086684338,
+    "brier": 0.287515260761756,
+    "ece": 0.33271427677050297,
+    "confusion_matrix": [
+      [
+        6802,
+        3330
+      ],
+      [
+        72,
+        103
+      ]
+    ],
+    "abstention_fraction": 0.16726496555738818
+  },
+  "candidate_validation": {
+    "sensitivity": 0.5885714285714285,
+    "specificity": 0.8029016975917884,
+    "precision": 0.04904761904761905,
+    "f1": 0.09054945054945054,
+    "balanced_accuracy": 0.6957365630816085,
+    "roc_auc": 0.7558417460944109,
+    "confusion_matrix": [
+      [
+        8135,
+        1997
+      ],
+      [
+        72,
+        103
+      ]
+    ]
+  },
+  "selected": "candidate",
+  "temperature": 1.2533362117539693,
+  "calibrated_validation": {
+    "sensitivity": 0.5885714285714285,
+    "specificity": 0.8029016975917884,
+    "precision": 0.04904761904761905,
+    "f1": 0.09054945054945054,
+    "balanced_accuracy": 0.6957365630816085,
+    "roc_auc": 0.7558417460944109,
+    "confusion_matrix": [
+      [
+        8135,
+        1997
+      ],
+      [
+        72,
+        103
+      ]
+    ]
+  },
+  "selected_test": {
+    "sensitivity": 0.7513513513513513,
+    "specificity": 0.5820910658148261,
+    "precision": 0.09189070074922874,
+    "f1": 0.16375417239348125,
+    "balanced_accuracy": 0.6667212085830887,
+    "roc_auc": 0.730998354606508,
+    "confusion_matrix": [
+      [
+        5740,
+        4121
+      ],
+      [
+        138,
+        417
+      ]
+    ]
+  },
+  "baseline_test": {
+    "sensitivity": 0.818018018018018,
+    "specificity": 0.39580164283541225,
+    "precision": 0.07080474111041797,
+    "f1": 0.13032869240706185,
+    "balanced_accuracy": 0.6069098304267151,
+    "roc_auc": 0.6605952469049517,
+    "brier": 0.3144023494000589,
+    "ece": 0.5028105268023119,
+    "confusion_matrix": [
+      [
+        3903,
+        5958
+      ],
+      [
+        101,
+        454
+      ]
+    ],
+    "abstention_fraction": 0.9771505376344086
+  },
+  "decision_threshold": 0.5,
+  "model_version": "nih-resnet18-15aada8cb8ca",
+  "limitations": "Fast cleaning skipped exhaustive image decoding, checksums, and near-duplicate scans. NIH labels are report-derived; research demo only."
+}
