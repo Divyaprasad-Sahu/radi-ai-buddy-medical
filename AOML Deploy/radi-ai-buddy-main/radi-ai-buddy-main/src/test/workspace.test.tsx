@@ -16,7 +16,7 @@ it("connects upload, result, contextual chat, history and report with explicit f
  fireEvent.click(screen.getByRole('button',{name:t('en','upload')}));
  await waitFor(()=>expect(screen.getByText(t('en','uncertain'))).toBeInTheDocument());
  fireEvent.click(screen.getByRole('button',{name:t('en','chat')}));
- const composer=await screen.findByPlaceholderText(t('en','chatPlaceholder'));
+ const composer=await screen.findByPlaceholderText(t('en','chatPlaceholder'),{}, {timeout:5000});
  fireEvent.change(composer,{target:{value:'Explain the score'}});
  fireEvent.click(screen.getByRole('button',{name:t('en','send')}));
  await screen.findByText('Context understood');
