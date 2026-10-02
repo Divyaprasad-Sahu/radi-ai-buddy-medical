@@ -57,6 +57,7 @@ The assistant requires a Groq key to answer. Put `GROQ_API_KEY` in the backend `
 | [Architecture](docs/architecture.md) | Frontend, API, model, assistant, and report flow |
 | [Getting started](docs/getting-started.md) | Local development, dependencies, environment variables, and tests |
 | [Data and model](docs/data-and-model.md) | NIH provenance, cleaning/EDA, training, evaluation, and model limitations |
+| [Dataset and procedure](docs/dataset-and-procedure.md) | Dataset card, cohort/split counts, cleaning steps, EDA outputs, and reproducibility |
 | [API reference](docs/api-reference.md) | Routes, payloads, limits, and error responses |
 | [Deployment](docs/deployment.md) | Current Vercel/Render deployment and redeploy configuration |
 | [Security and privacy](docs/security-and-privacy.md) | Upload protections, secrets, retention, and known limits |

@@ -1,5 +1,7 @@
 # Data and model
 
+For the dataset card, saved cohort breakdown, and full download-to-training procedure, see [Dataset and reproducible procedure](dataset-and-procedure.md).
+
 ## Dataset provenance
 
 The intended source is the official NIH Clinical Center ChestX-ray14 release: [NIH ChestX-ray14 on Box](https://nihcc.app.box.com/v/ChestXray-NIHCC). The dataset contains frontal chest radiographs and labels mined from associated reports. Those labels are weak labels and may be incomplete or incorrect. Review the NIH release documentation and terms before redistribution.
