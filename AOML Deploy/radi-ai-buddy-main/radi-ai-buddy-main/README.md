@@ -1,7 +1,30 @@
-# Radiant React frontend
+# Radiant frontend
 
-See the workspace root README.md for setup and measured limitations. Run npm ci, npm run dev. Set VITE_API_BASE_URL to the backend URL.
+This directory contains the supplied React + Vite frontend. It provides the landing page and imaging workspace, X-ray upload and result display, English/Hindi/Marathi language selection, Groq-backed chat UI, private session history, report preview/export, and research/model panel.
 
-The supplied frontend retains its upload, language selector, chatbot, history and reports, with a refreshed professional interface. The assistant calls Groq through the backend; credentials never belong in Vite variables. Chat works before upload and receives selected screening context when available. Reports support private optional patient details, downloadable HTML and browser Print / Save PDF. Screening requires a validated model; no test fixture is served as a real result.
+## Local development
 
-Checks: npm run test, npm run lint, npx tsc -p tsconfig.app.json --noEmit, npm run build, npm audit.
+```powershell
+npm ci
+Copy-Item .env.example .env
+# Set VITE_API_BASE_URL=http://127.0.0.1:8000 in .env
+npm run dev
+```
+
+The backend must be running and allow the exact Vite origin in `CORS_ORIGINS`. See the repository [Getting started guide](../../../docs/getting-started.md).
+
+## Build and checks
+
+```powershell
+npm run test
+npm run lint
+npx tsc --noEmit -p tsconfig.app.json
+npm run build
+npm audit
+```
+
+## Deployment
+
+Vercel project root: `AOML Deploy/radi-ai-buddy-main/radi-ai-buddy-main`. Build command: `npm run build`. Output directory: `dist`. Set `VITE_API_BASE_URL` to the deployed backend URL. The variable is public in the generated frontend; never put API keys in Vite variables.
+
+See the repository [Deployment guide](../../../docs/deployment.md) and [Security and privacy guide](../../../docs/security-and-privacy.md).

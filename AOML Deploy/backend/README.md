@@ -1,21 +1,36 @@
-# FastAPI screening backend
+# Radiant API and model pipeline
 
-See the workspace root README.md for setup, NIH download/cleaning/EDA, training, validation, security, and deployment instructions.
+This directory contains the FastAPI service, ONNX model artifact, NIH data-cleaning/EDA pipeline, and offline training code.
 
-Runtime dependencies: requirements.lock.txt (ONNX CPU inference only).
-Training/testing dependencies: requirements-dev.lock.txt.
+## Run the API
 
-GET /health returns 503 until a checksum-verified ONNX model and matching metadata are installed.
-POST /predict accepts multipart file, language (en/hi/mr), and optional symptoms.
-POST /chat uses Groq directly and accepts bounded user/assistant history, optional model context and selected language. No local chatbot fallback. GET /insights exposes aggregate research metrics only.
+From this directory:
 
-The legacy models/pneumonia_model.pth is evaluated offline with weights_only=True, and is never used as an unverified serving fallback.
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+Copy-Item .env.example .env
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
 
-## Current serving artifact
+The serving-only dependency lock is `requirements.lock.txt`; development, tests, cleaning, EDA, and training use the larger `requirements-dev.lock.txt`. Configure the frontend's `VITE_API_BASE_URL` and the backend's exact `CORS_ORIGINS`.
 
-`models/pneumonia_model.onnx` is the fine-tuned NIH ChestX-ray14 ResNet18, version `nih-resnet18-15aada8cb8ca`; its JSON sidecar records the checksum, validation-fitted temperature, and evaluation provenance. The ONNX export matched PyTorch within `3.6e-6` maximum absolute logit error on eight validation images.
+## Routes
 
-On the held-out official test partition, the candidate reached 0.667 balanced accuracy, 0.751 sensitivity, 0.582 specificity, 0.092 precision, 0.164 F1, and 0.731 ROC-AUC. The legacy checkpoint measured 0.607 balanced accuracy, 0.818 sensitivity, 0.396 specificity, 0.071 precision, 0.130 F1, and 0.661 ROC-AUC on the same partition. Sensitivity decreased, so these results are a research-demo comparison and do not establish clinical performance. NIH labels are report-derived; "No Finding" does not mean confirmed healthy. Do not use this app to make patient-care decisions.
+- `GET /health`: model readiness; returns 503 when the validated ONNX model cannot load.
+- `POST /predict`: multipart image screening.
+- `POST /chat`: Groq-backed chat; the API key stays on the backend.
+- `POST /explain`: deterministic localized result explanation.
+- `GET /chat/status`: whether a Groq key is configured.
+- `GET /insights`: aggregate cohort and evaluation information.
+- `GET /docs`: interactive OpenAPI documentation.
 
-The full evaluation and quick-cleaning limitations are in `artifacts/nih-resnet18-15aada8cb8ca/evaluation-full.json` and `artifacts/nih-resnet18-15aada8cb8ca/cleaning.json`.
+See [API reference](../../docs/api-reference.md), [Data and model](../../docs/data-and-model.md), and [Security and privacy](../../docs/security-and-privacy.md).
 
+## Model
+
+Only `models/pneumonia_model.onnx` with its checksum-verified JSON sidecar serves predictions. Current version: `nih-resnet18-15aada8cb8ca`. The legacy `.pth` checkpoint is not an inference fallback. Evaluation details and provenance limitations are documented in [Data and model](../../docs/data-and-model.md).
+
+## Offline research workflow
+
+The scripts `download_nih.py`, `clean_nih.py`, and `train.py` download from the official NIH Box release, prepare a patient-separated manifest/EDA, and fine-tune pretrained ResNet18. Raw images and row-level records are intentionally omitted from Git. See the full documented workflow before downloading the multi-gigabyte release or retraining.
